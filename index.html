@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduCoach - Premium Coaching for 9-12</title>
+    <title>EduCoach - Class Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,12 +19,15 @@
             --accent: #3ba874;
             --light: #f5f7ff;
             --dark: #2c3e50;
+            --danger: #e74c3c;
+            --warning: #f39c12;
         }
         
         body {
             background: linear-gradient(135deg, #f5f7ff 0%, #e8edff 100%);
             color: var(--dark);
             line-height: 1.6;
+            min-height: 100vh;
         }
         
         .container {
@@ -117,268 +120,243 @@
             color: var(--dark);
         }
         
-        /* Hero Section */
-        .hero {
-            padding: 60px 0;
-            text-align: center;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%234a6fc0" opacity="0.1" width="100" height="100"/><path fill="%234a6fc0" opacity="0.2" d="M0 0L100 100"/></svg>');
+        /* Class Management Header */
+        .management-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0 20px;
         }
         
-        .hero h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+        .management-header h2 {
+            color: var(--dark);
+            font-size: 28px;
+        }
+        
+        /* Filter Section */
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+        
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
             color: var(--dark);
         }
         
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: #555;
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
         
-        .hero-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
+        .filter-group select:focus, .filter-group input:focus {
+            border-color: var(--primary);
+            outline: none;
         }
         
-        .hero-card {
+        /* Classes Grid */
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .class-card {
             background: white;
             border-radius: 12px;
-            padding: 25px;
-            width: 280px;
+            overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
         }
         
-        .hero-card:hover {
+        .class-card:hover {
             transform: translateY(-5px);
         }
         
-        .hero-card i {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .hero-card h3 {
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        
-        /* Boards Section */
-        .boards {
-            padding: 60px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--dark);
+        .class-card-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
             position: relative;
         }
         
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 15px auto;
-            border-radius: 2px;
+        .class-card-header h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
         }
         
-        .board-cards {
+        .class-card-body {
+            padding: 20px;
+        }
+        
+        .class-info {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-        }
-        
-        .board-card {
-            background: var(--light);
-            border-radius: 12px;
-            overflow: hidden;
-            width: 300px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .board-card-header {
-            background: var(--primary);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .board-card-body {
-            padding: 20px;
-        }
-        
-        .board-card-body ul {
-            list-style: none;
-            margin: 15px 0;
-        }
-        
-        .board-card-body li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .board-card-body li:last-child {
-            border-bottom: none;
-        }
-        
-        .board-card-body li i {
-            color: var(--accent);
-            margin-right: 10px;
-        }
-        
-        /* Subjects Section */
-        .subjects {
-            padding: 60px 0;
-            background: var(--light);
-        }
-        
-        .subject-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .subject-tab {
-            padding: 12px 25px;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .subject-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .subject-tab:hover:not(.active) {
-            border-color: var(--primary);
-        }
-        
-        .subject-content {
-            display: none;
-        }
-        
-        .subject-content.active {
-            display: block;
-        }
-        
-        .chapters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .chapter-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .chapter-card h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .chapter-card p {
-            color: #666;
-            font-size: 0.9rem;
+            justify-content: space-between;
             margin-bottom: 15px;
         }
         
-        .progress-bar {
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        
-        .progress {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 60px 0;
-            background: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .feature-card {
-            text-align: center;
-            padding: 30px;
-            border-radius: 12px;
+        .class-info span {
             background: var(--light);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
         }
         
-        .feature-card i {
-            font-size: 50px;
-            color: var(--primary);
+        .class-description {
+            color: #666;
             margin-bottom: 20px;
+            font-size: 14px;
         }
         
-        /* Testimonials */
-        .testimonials {
-            padding: 60px 0;
-            background: var(--light);
-        }
-        
-        .testimonial-cards {
+        .class-actions {
             display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 0;
+            justify-content: space-between;
         }
         
-        .testimonial-card {
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .view-btn {
+            background: var(--light);
+            color: var(--primary);
+        }
+        
+        .view-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .edit-btn {
+            background: var(--light);
+            color: var(--accent);
+        }
+        
+        .edit-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Upload Section */
+        .upload-section {
             background: white;
             border-radius: 12px;
             padding: 25px;
-            min-width: 300px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
         }
         
-        .testimonial-card p {
+        .upload-section h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .upload-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
             margin-bottom: 15px;
-            font-style: italic;
         }
         
-        .student {
-            display: flex;
-            align-items: center;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
         }
         
-        .student img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: span 2;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+        
+        .file-upload i {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: span 2;
+            justify-self: end;
+            width: 200px;
+        }
+        
+        .submit-btn:hover {
+            background: #2d8a5f;
         }
         
         /* Footer */
@@ -386,6 +364,7 @@
             background: var(--dark);
             color: white;
             padding: 50px 0 20px;
+            margin-top: 40px;
         }
         
         .footer-content {
@@ -472,12 +451,12 @@
                 justify-content: center;
             }
             
-            .hero h2 {
-                font-size: 2rem;
+            .upload-form {
+                grid-template-columns: 1fr;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .file-upload, .submit-btn {
+                grid-column: span 1;
             }
         }
     </style>
@@ -494,7 +473,7 @@
                 <nav>
                     <ul>
                         <li><a href="#">Home</a></li>
-                        <li><a href="#">Classes</a></li>
+                        <li><a href="#" class="active">Classes</a></li>
                         <li><a href="#">Study Material</a></li>
                         <li><a href="#">Practice Tests</a></li>
                         <li><a href="#">Doubts</a></li>
@@ -508,261 +487,206 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Premium Coaching for Classes 9-12</h2>
-            <p>Master Mathematics, Physics, and Chemistry with India's best teachers. Tailored for CBSE, ICSE, and UP Boards.</p>
-            <div class="hero-content">
-                <div class="hero-card">
-                    <i class="fas fa-calculator"></i>
-                    <h3>Mathematics</h3>
-                    <p>Comprehensive coverage of all concepts with practice problems</p>
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Class Management Header -->
+        <div class="management-header">
+            <h2>Class Management</h2>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Create New Class
+            </button>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="all">All Subjects</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                    </select>
                 </div>
-                <div class="hero-card">
-                    <i class="fas fa-atom"></i>
-                    <h3>Physics</h3>
-                    <p>Understand concepts with visual demonstrations and simulations</p>
+                <div class="filter-group">
+                    <label for="class">Class</label>
+                    <select id="class">
+                        <option value="all">All Classes</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
                 </div>
-                <div class="hero-card">
-                    <i class="fas fa-flask"></i>
-                    <h3>Chemistry</h3>
-                    <p>Interactive lessons for organic, inorganic, and physical chemistry</p>
+                <div class="filter-group">
+                    <label for="board">Board</label>
+                    <select id="board">
+                        <option value="all">All Boards</option>
+                        <option value="cbse">CBSE</option>
+                        <option value="icse">ICSE</option>
+                        <option value="up">UP Board</option>
+                    </select>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Boards Section -->
-    <section class="boards">
-        <div class="container">
-            <h2 class="section-title">Our Board Coverage</h2>
-            <div class="board-cards">
-                <div class="board-card">
-                    <div class="board-card-header">
-                        <h3>CBSE</h3>
-                    </div>
-                    <div class="board-card-body">
-                        <p>Complete NCERT syllabus with additional practice material</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Detailed solutions</li>
-                            <li><i class="fas fa-check-circle"></i> Sample papers</li>
-                            <li><i class="fas fa-check-circle"></i> Previous year questions</li>
-                            <li><i class="fas fa-check-circle"></i> MCQ practice</li>
-                        </ul>
-                    </div>
+        
+        <!-- Classes Grid -->
+        <div class="classes-grid">
+            <!-- Class Card 1 -->
+            <div class="class-card">
+                <div class="class-card-header">
+                    <h3>Quadratic Equations</h3>
+                    <p>Mathematics • Class 10</p>
                 </div>
-                <div class="board-card">
-                    <div class="board-card-header">
-                        <h3>ICSE</h3>
+                <div class="class-card-body">
+                    <div class="class-info">
+                        <span>CBSE</span>
+                        <span>12 Videos</span>
                     </div>
-                    <div class="board-card-body">
-                        <p>Comprehensive coverage of ICSE curriculum with emphasis on application</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Concept explanations</li>
-                            <li><i class="fas fa-check-circle"></i> Application-based learning</li>
-                            <li><i class="fas fa-check-circle"></i> Project guidance</li>
-                            <li><i class="fas fa-check-circle"></i> Semester preparation</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="board-card">
-                    <div class="board-card-header">
-                        <h3>UP Board</h3>
-                    </div>
-                    <div class="board-card-body">
-                        <p>Hindi and English medium instruction with board-specific content</p>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Bilingual support</li>
-                            <li><i class="fas fa-check-circle"></i> Board pattern practice</li>
-                            <li><i class="fas fa-check-circle"></i> Textbook solutions</li>
-                            <li><i class="fas fa-check-circle"></i> Important questions</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Subjects Section -->
-    <section class="subjects">
-        <div class="container">
-            <h2 class="section-title">Study Material</h2>
-            <div class="subject-tabs">
-                <div class="subject-tab active" data-target="math">Mathematics</div>
-                <div class="subject-tab" data-target="physics">Physics</div>
-                <div class="subject-tab" data-target="chemistry">Chemistry</div>
-            </div>
-            
-            <div class="subject-content active" id="math">
-                <h3>Class 9 Mathematics</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Number Systems</h4>
-                        <p>Real numbers, irrational numbers, and their decimal expansions</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                        <span>75% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Polynomials</h4>
-                        <p>Types of polynomials, factorization, and algebraic identities</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 60%"></div>
-                        </div>
-                        <span>60% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Coordinate Geometry</h4>
-                        <p>Cartesian plane, coordinates of a point, and graphs</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%"></div>
-                        </div>
-                        <span>30% completed</span>
+                    <p class="class-description">
+                        Learn how to solve quadratic equations using factorization, completing the square, and quadratic formula.
+                    </p>
+                    <div class="class-actions">
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> View Class
+                        </button>
+                        <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     </div>
                 </div>
             </div>
             
-            <div class="subject-content" id="physics">
-                <h3>Class 9 Physics</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Motion</h4>
-                        <p>Distance, displacement, velocity, and acceleration concepts</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                        <span>85% completed</span>
+            <!-- Class Card 2 -->
+            <div class="class-card">
+                <div class="class-card-header">
+                    <h3>Electromagnetism</h3>
+                    <p>Physics • Class 12</p>
+                </div>
+                <div class="class-card-body">
+                    <div class="class-info">
+                        <span>ICSE</span>
+                        <span>18 Videos</span>
                     </div>
-                    <div class="chapter-card">
-                        <h4>Force and Laws of Motion</h4>
-                        <p>Newton's laws, momentum, and conservation principles</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%"></div>
-                        </div>
-                        <span>70% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Gravitation</h4>
-                        <p>Universal law, free fall, and mass vs weight</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 40%"></div>
-                        </div>
-                        <span>40% completed</span>
+                    <p class="class-description">
+                        Understanding electromagnetic induction, Faraday's law, Lenz's law, and their applications.
+                    </p>
+                    <div class="class-actions">
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> View Class
+                        </button>
+                        <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     </div>
                 </div>
             </div>
             
-            <div class="subject-content" id="chemistry">
-                <h3>Class 9 Chemistry</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Matter in Our Surroundings</h4>
-                        <p>States of matter, evaporation, and sublimation</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                        <span>90% completed</span>
+            <!-- Class Card 3 -->
+            <div class="class-card">
+                <div class="class-card-header">
+                    <h3>Organic Chemistry</h3>
+                    <p>Chemistry • Class 11</p>
+                </div>
+                <div class="class-card-body">
+                    <div class="class-info">
+                        <span>CBSE</span>
+                        <span>22 Videos</span>
                     </div>
-                    <div class="chapter-card">
-                        <h4>Atoms and Molecules</h4>
-                        <p>Laws of chemical combination, atomicity, and mole concept</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 65%"></div>
-                        </div>
-                        <span>65% completed</span>
+                    <p class="class-description">
+                        Introduction to organic compounds, functional groups, nomenclature, and basic reactions.
+                    </p>
+                    <div class="class-actions">
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> View Class
+                        </button>
+                        <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     </div>
-                    <div class="chapter-card">
-                        <h4>Structure of Atom</h4>
-                        <p>Electrons, protons, neutrons, and atomic models</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 50%"></div>
-                        </div>
-                        <span>50% completed</span>
+                </div>
+            </div>
+            
+            <!-- Class Card 4 -->
+            <div class="class-card">
+                <div class="class-card-header">
+                    <h3>Trigonometry</h3>
+                    <p>Mathematics • Class 9</p>
+                </div>
+                <div class="class-card-body">
+                    <div class="class-info">
+                        <span>UP Board</span>
+                        <span>15 Videos</span>
+                    </div>
+                    <p class="class-description">
+                        Learn trigonometric ratios, identities, and their applications with practical examples.
+                    </p>
+                    <div class="class-actions">
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> View Class
+                        </button>
+                        <button class="action-btn edit-btn">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose EduCoach?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-video"></i>
-                    <h3>Interactive Video Lessons</h3>
-                    <p>Engaging video content with interactive elements to enhance learning</p>
+        
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <h3>Upload New Video</h3>
+            <form class="upload-form">
+                <div class="form-group">
+                    <label for="video-title">Video Title</label>
+                    <input type="text" id="video-title" placeholder="Enter video title">
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Comprehensive Study Material</h3>
-                    <p>Detailed notes, practice problems, and revision guides</p>
+                <div class="form-group">
+                    <label for="video-subject">Subject</label>
+                    <select id="video-subject">
+                        <option value="">Select Subject</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                    </select>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Expert Teachers</h3>
-                    <p>Learn from India's best educators with years of experience</p>
+                <div class="form-group">
+                    <label for="video-class">Class</label>
+                    <select id="video-class">
+                        <option value="">Select Class</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Regular Assessments</h3>
-                    <p>Chapter-wise tests and full-length mock exams</p>
+                <div class="form-group">
+                    <label for="video-board">Board</label>
+                    <select id="video-board">
+                        <option value="">Select Board</option>
+                        <option value="cbse">CBSE</option>
+                        <option value="icse">ICSE</option>
+                        <option value="up">UP Board</option>
+                    </select>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-question-circle"></i>
-                    <h3>Doubt Resolution</h3>
-                    <p>24/7 doubt solving with detailed explanations</p>
+                <div class="form-group">
+                    <label for="video-desc">Description</label>
+                    <textarea id="video-desc" placeholder="Enter video description"></textarea>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Learn Anywhere</h3>
-                    <p>Access lessons on mobile, tablet, or desktop</p>
+                <div class="form-group">
+                    <label for="video-chapter">Chapter</label>
+                    <input type="text" id="video-chapter" placeholder="Enter chapter name">
                 </div>
-            </div>
+                <div class="file-upload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload video or drag and drop</p>
+                    <p>MP4, MOV, AVI (Max 2GB)</p>
+                </div>
+                <button type="submit" class="submit-btn">Upload Video</button>
+            </form>
         </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Students Say</h2>
-            <div class="testimonial-cards">
-                <div class="testimonial-card">
-                    <p>"EduCoach helped me understand complex physics concepts with their visual approach. I improved my score from 65% to 92% in just 6 months!"</p>
-                    <div class="student">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'><rect width='50' height='50' fill='%234a6fc0'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'>AS</text></svg>" alt="Student">
-                        <div>
-                            <h4>Aarav Sharma</h4>
-                            <p>Class 12, CBSE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"The mathematics course is exceptional. The teachers break down difficult problems into simple steps that are easy to understand and remember."</p>
-                    <div class="student">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'><rect width='50' height='50' fill='%236c4ac0'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'>PD</text></svg>" alt="Student">
-                        <div>
-                            <h4>Priya Desai</h4>
-                            <p>Class 10, ICSE</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"As a UP Board student, I struggled to find good resources in Hindi. EduCoach's bilingual approach helped me master chemistry concepts easily."</p>
-                    <div class="student">
-                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'><rect width='50' height='50' fill='%233ba874'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'>RS</text></svg>" alt="Student">
-                        <div>
-                            <h4>Rahul Singh</h4>
-                            <p>Class 11, UP Board</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -814,19 +738,43 @@
     </footer>
 
     <script>
-        // Tab functionality for subjects
-        document.querySelectorAll('.subject-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and content
-                document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.subject-content').forEach(c => c.classList.remove('active'));
+        // Simple filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const subjectFilter = document.getElementById('subject');
+            const classFilter = document.getElementById('class');
+            const boardFilter = document.getElementById('board');
+            const classCards = document.querySelectorAll('.class-card');
+            
+            function filterClasses() {
+                const subjectValue = subjectFilter.value;
+                const classValue = classFilter.value;
+                const boardValue = boardFilter.value;
                 
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                const target = tab.getAttribute('data-target');
-                document.getElementById(target).classList.add('active');
+                classCards.forEach(card => {
+                    const cardSubject = card.querySelector('.class-card-header p').textContent.toLowerCase();
+                    const cardClass = card.querySelector('.class-card-header p').textContent;
+                    const cardBoard = card.querySelector('.class-info span').textContent.toLowerCase();
+                    
+                    const subjectMatch = subjectValue === 'all' || cardSubject.includes(subjectValue);
+                    const classMatch = classValue === 'all' || cardClass.includes('Class ' + classValue);
+                    const boardMatch = boardValue === 'all' || cardBoard.includes(boardValue);
+                    
+                    if (subjectMatch && classMatch && boardMatch) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            subjectFilter.addEventListener('change', filterClasses);
+            classFilter.addEventListener('change', filterClasses);
+            boardFilter.addEventListener('change', filterClasses);
+            
+            // File upload interaction
+            const fileUpload = document.querySelector('.file-upload');
+            fileUpload.addEventListener('click', function() {
+                alert('File upload dialog would open here. This is a frontend demonstration.');
             });
         });
     </script>
