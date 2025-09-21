@@ -79,9 +79,12 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
         }
         
         nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.2);
             color: #ffd700;
         }
         
@@ -120,7 +123,35 @@
             color: var(--dark);
         }
         
-        /* Hero Section */
+        /* Page Content Styles */
+        .page {
+            display: none;
+            padding: 30px 0;
+            min-height: 70vh;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Home Page Styles */
         .hero {
             padding: 80px 0 60px;
             text-align: center;
@@ -182,40 +213,18 @@
             color: white;
         }
         
-        /* Features Section */
-        .features {
-            padding: 60px 0;
-            background: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--dark);
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            margin: 15px auto;
-            border-radius: 2px;
-        }
-        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 40px;
         }
         
         .feature-card {
             text-align: center;
             padding: 30px;
             border-radius: 12px;
-            background: var(--light);
+            background: white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
@@ -230,96 +239,7 @@
             margin-bottom: 20px;
         }
         
-        /* Subjects Section */
-        .subjects {
-            padding: 60px 0;
-            background: var(--light);
-        }
-        
-        .subject-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .subject-tab {
-            padding: 12px 25px;
-            background: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .subject-tab.active {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .subject-tab:hover:not(.active) {
-            border-color: var(--primary);
-        }
-        
-        .subject-content {
-            display: none;
-        }
-        
-        .subject-content.active {
-            display: block;
-        }
-        
-        .chapters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .chapter-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .chapter-card:hover {
-            transform: translateY(-3px);
-        }
-        
-        .chapter-card h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .chapter-card p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-        
-        .progress {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-        }
-        
-        /* Classes Section */
-        .classes {
-            padding: 60px 0;
-            background: white;
-        }
-        
+        /* Classes Page Styles */
         .filter-row {
             display: flex;
             gap: 20px;
@@ -438,49 +358,192 @@
             color: white;
         }
         
-        /* Testimonials */
-        .testimonials {
-            padding: 60px 0;
-            background: var(--light);
+        /* Study Material Page Styles */
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
         
-        .testimonial-cards {
+        .material-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .material-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .material-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .material-info {
             display: flex;
-            gap: 25px;
-            overflow-x: auto;
-            padding: 20px 0;
-            scrollbar-width: thin;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
         }
         
-        .testimonial-card {
+        /* Practice Tests Page Styles */
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .test-card-header {
+            background: var(--accent);
+            color: white;
+            padding: 15px;
+        }
+        
+        .test-card-header h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .test-card-body {
+            padding: 20px;
+        }
+        
+        .test-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .test-info span {
+            background: var(--light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .test-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        /* Doubts Page Styles */
+        .doubts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .ask-doubt {
             background: white;
             border-radius: 12px;
             padding: 25px;
-            min-width: 300px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .testimonial-card p {
-            margin-bottom: 15px;
-            font-style: italic;
+        .doubt-list {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .student {
-            display: flex;
-            align-items: center;
+        .form-group {
+            margin-bottom: 20px;
         }
         
-        .student-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: var(--accent);
             color: white;
-            font-weight: bold;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #2d8a5f;
+        }
+        
+        .doubt-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .doubt-item:last-child {
+            border-bottom: none;
+        }
+        
+        .doubt-item h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .doubt-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .doubt-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.85rem;
         }
         
         /* Footer */
@@ -488,6 +551,7 @@
             background: var(--dark);
             color: white;
             padding: 50px 0 20px;
+            margin-top: 40px;
         }
         
         .footer-content {
@@ -569,7 +633,7 @@
             }
             
             nav ul {
-                gap: 15px;
+                gap: 10px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -590,6 +654,10 @@
             .filter-group {
                 min-width: 100%;
             }
+            
+            .doubts-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -604,11 +672,11 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="#" class="active">Home</a></li>
-                        <li><a href="#classes">Classes</a></li>
-                        <li><a href="#subjects">Subjects</a></li>
-                        <li><a href="#">Practice Tests</a></li>
-                        <li><a href="#">Doubts</a></li>
+                        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="classes">Classes</a></li>
+                        <li><a href="#" class="nav-link" data-page="study-material">Study Material</a></li>
+                        <li><a href="#" class="nav-link" data-page="practice-tests">Practice Tests</a></li>
+                        <li><a href="#" class="nav-link" data-page="doubts">Doubts</a></li>
                     </ul>
                 </nav>
                 <div class="auth-buttons">
@@ -619,163 +687,62 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Master Math, Physics & Chemistry with India's Best Teachers</h2>
-            <p>Personalized learning for CBSE, ICSE, and UP Board students in classes 9-12. Interactive classes, doubt solving, and comprehensive study materials.</p>
-            <div class="hero-buttons">
-                <button class="hero-btn primary">Start Learning Now</button>
-                <button class="hero-btn secondary">Watch Free Videos</button>
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h2>Master Math, Physics & Chemistry with India's Best Teachers</h2>
+                <p>Personalized learning for CBSE, ICSE, and UP Board students in classes 9-12. Interactive classes, doubt solving, and comprehensive study materials.</p>
+                <div class="hero-buttons">
+                    <button class="hero-btn primary">Start Learning Now</button>
+                    <button class="hero-btn secondary">Watch Free Videos</button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose EduCoach?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-video"></i>
-                    <h3>Interactive Video Lessons</h3>
-                    <p>Engaging video content with interactive elements to enhance learning</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Comprehensive Study Material</h3>
-                    <p>Detailed notes, practice problems, and revision guides</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h3>Expert Teachers</h3>
-                    <p>Learn from India's best educators with years of experience</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Regular Assessments</h3>
-                    <p>Chapter-wise tests and full-length mock exams</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-question-circle"></i>
-                    <h3>Doubt Resolution</h3>
-                    <p>24/7 doubt solving with detailed explanations</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Learn Anywhere</h3>
-                    <p>Access lessons on mobile, tablet, or desktop</p>
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Why Choose EduCoach?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-video"></i>
+                        <h3>Interactive Video Lessons</h3>
+                        <p>Engaging video content with interactive elements to enhance learning</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Comprehensive Study Material</h3>
+                        <p>Detailed notes, practice problems, and revision guides</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Expert Teachers</h3>
+                        <p>Learn from India's best educators with years of experience</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Regular Assessments</h3>
+                        <p>Chapter-wise tests and full-length mock exams</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>Doubt Resolution</h3>
+                        <p>24/7 doubt solving with detailed explanations</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Learn Anywhere</h3>
+                        <p>Access lessons on mobile, tablet, or desktop</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Subjects Section -->
-    <section class="subjects" id="subjects">
+    <!-- Classes Page -->
+    <div id="classes" class="page">
         <div class="container">
-            <h2 class="section-title">Explore Subjects</h2>
-            <div class="subject-tabs">
-                <div class="subject-tab active" data-target="math">Mathematics</div>
-                <div class="subject-tab" data-target="physics">Physics</div>
-                <div class="subject-tab" data-target="chemistry">Chemistry</div>
-            </div>
-            
-            <div class="subject-content active" id="math">
-                <h3>Class 9 Mathematics</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Number Systems</h4>
-                        <p>Real numbers, irrational numbers, and their decimal expansions</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 75%"></div>
-                        </div>
-                        <span>75% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Polynomials</h4>
-                        <p>Types of polynomials, factorization, and algebraic identities</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 60%"></div>
-                        </div>
-                        <span>60% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Coordinate Geometry</h4>
-                        <p>Cartesian plane, coordinates of a point, and graphs</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 30%"></div>
-                        </div>
-                        <span>30% completed</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="subject-content" id="physics">
-                <h3>Class 9 Physics</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Motion</h4>
-                        <p>Distance, displacement, velocity, and acceleration concepts</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 85%"></div>
-                        </div>
-                        <span>85% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Force and Laws of Motion</h4>
-                        <p>Newton's laws, momentum, and conservation principles</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 70%"></div>
-                        </div>
-                        <span>70% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Gravitation</h4>
-                        <p>Universal law, free fall, and mass vs weight</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 40%"></div>
-                        </div>
-                        <span>40% completed</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="subject-content" id="chemistry">
-                <h3>Class 9 Chemistry</h3>
-                <div class="chapters-grid">
-                    <div class="chapter-card">
-                        <h4>Matter in Our Surroundings</h4>
-                        <p>States of matter, evaporation, and sublimation</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 90%"></div>
-                        </div>
-                        <span>90% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Atoms and Molecules</h4>
-                        <p>Laws of chemical combination, atomicity, and mole concept</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 65%"></div>
-                        </div>
-                        <span>65% completed</span>
-                    </div>
-                    <div class="chapter-card">
-                        <h4>Structure of Atom</h4>
-                        <p>Electrons, protons, neutrons, and atomic models</p>
-                        <div class="progress-bar">
-                            <div class="progress" style="width: 50%"></div>
-                        </div>
-                        <span>50% completed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Classes Section -->
-    <section class="classes" id="classes">
-        <div class="container">
-            <h2 class="section-title">Recent Classes</h2>
+            <h2 class="section-title">Our Classes</h2>
             
             <div class="filter-row">
                 <div class="filter-group">
@@ -874,58 +841,433 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our Students Say</h2>
-            <div class="testimonial-cards">
-                <div class="testimonial-card">
-                    <p>"EduCoach helped me understand complex physics concepts with their visual approach. I improved my score from 65% to 92% in just 6 months!"</p>
-                    <div class="student">
-                        <div class="student-avatar">AS</div>
-                        <div>
-                            <h4>Aarav Sharma</h4>
-                            <p>Class 12, CBSE</p>
+                <!-- Class Card 4 -->
+                <div class="class-card">
+                    <div class="class-card-header">
+                        <h3>Trigonometry</h3>
+                        <p>Mathematics • Class 9</p>
+                    </div>
+                    <div class="class-card-body">
+                        <div class="class-info">
+                            <span>UP Board</span>
+                            <span>38 mins</span>
+                        </div>
+                        <p class="class-description">
+                            Learn trigonometric ratios, identities, and their applications with practical examples.
+                        </p>
+                        <div class="class-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-play-circle"></i> Watch Now
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"The mathematics course is exceptional. The teachers break down difficult problems into simple steps that are easy to understand and remember."</p>
-                    <div class="student">
-                        <div class="student-avatar">PD</div>
-                        <div>
-                            <h4>Priya Desai</h4>
-                            <p>Class 10, ICSE</p>
+
+                <!-- Class Card 5 -->
+                <div class="class-card">
+                    <div class="class-card-header">
+                        <h3>Atomic Structure</h3>
+                        <p>Chemistry • Class 11</p>
+                    </div>
+                    <div class="class-card-body">
+                        <div class="class-info">
+                            <span>CBSE</span>
+                            <span>47 mins</span>
+                        </div>
+                        <p class="class-description">
+                            Understand atoms, subatomic particles, and quantum mechanical model of atom.
+                        </p>
+                        <div class="class-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-play-circle"></i> Watch Now
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p>"As a UP Board student, I struggled to find good resources in Hindi. EduCoach's bilingual approach helped me master chemistry concepts easily."</p>
-                    <div class="student">
-                        <div class="student-avatar">RS</div>
-                        <div>
-                            <h4>Rahul Singh</h4>
-                            <p>Class 11, UP Board</p>
-                        </div>
+
+                <!-- Class Card 6 -->
+                <div class="class-card">
+                    <div class="class-card-header">
+                        <h3>Mechanics</h3>
+                        <p>Physics • Class 11</p>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <p>"The doubt solving sessions are amazing. Teachers are always available and explain concepts until I fully understand them."</p>
-                    <div class="student">
-                        <div class="student-avatar">NM</div>
-                        <div>
-                            <h4>Neha Mehta</h4>
-                            <p>Class 9, CBSE</p>
+                    <div class="class-card-body">
+                        <div class="class-info">
+                            <span>ICSE</span>
+                            <span>62 mins</span>
+                        </div>
+                        <p class="class-description">
+                            Study motion, forces, energy, and momentum with practical examples and demonstrations.
+                        </p>
+                        <div class="class-actions">
+                            <button class="action-btn view-btn">
+                                <i class="fas fa-play-circle"></i> Watch Now
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Study Material Page -->
+    <div id="study-material" class="page">
+        <div class="container">
+            <h2 class="section-title">Study Material</h2>
+            
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="material-subject">Subject</label>
+                    <select id="material-subject">
+                        <option value="all">All Subjects</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="material-class">Class</label>
+                    <select id="material-class">
+                        <option value="all">All Classes</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="material-type">Type</label>
+                    <select id="material-type">
+                        <option value="all">All Types</option>
+                        <option value="notes">Notes</option>
+                        <option value="formula">Formula Sheets</option>
+                        <option value="summary">Chapter Summary</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="materials-grid">
+                <div class="material-card">
+                    <h4>Algebra Formulas Handbook</h4>
+                    <p>Complete collection of all algebraic formulas with examples for quick revision.</p>
+                    <div class="material-info">
+                        <span>Mathematics</span>
+                        <span>Class 10</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="material-card">
+                    <h4>Physics Laws & Principles</h4>
+                    <p>Comprehensive guide to all physics laws and principles with practical applications.</p>
+                    <div class="material-info">
+                        <span>Physics</span>
+                        <span>Class 11-12</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="material-card">
+                    <h4>Chemical Reactions Guide</h4>
+                    <p>Important chemical reactions with mechanisms and examples for board exams.</p>
+                    <div class="material-info">
+                        <span>Chemistry</span>
+                        <span>Class 12</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="material-card">
+                    <h4>Geometry Theorem Proofs</h4>
+                    <p>Step-by-step proofs of all important geometry theorems with diagrams.</p>
+                    <div class="material-info">
+                        <span>Mathematics</span>
+                        <span>Class 9-10</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="material-card">
+                    <h4>Modern Physics Notes</h4>
+                    <p>Complete notes on modern physics topics including atoms, nuclei, and semiconductors.</p>
+                    <div class="material-info">
+                        <span>Physics</span>
+                        <span>Class 12</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+                
+                <div class="material-card">
+                    <h4>Organic Chemistry Reactions</h4>
+                    <p>Comprehensive chart of all organic chemistry reactions with mechanisms.</p>
+                    <div class="material-info">
+                        <span>Chemistry</span>
+                        <span>Class 12</span>
+                    </div>
+                    <button class="action-btn view-btn">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Tests Page -->
+    <div id="practice-tests" class="page">
+        <div class="container">
+            <h2 class="section-title">Practice Tests</h2>
+            
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="test-subject">Subject</label>
+                    <select id="test-subject">
+                        <option value="all">All Subjects</option>
+                        <option value="math">Mathematics</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="test-class">Class</label>
+                    <select id="test-class">
+                        <option value="all">All Classes</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="test-type">Test Type</label>
+                    <select id="test-type">
+                        <option value="all">All Types</option>
+                        <option value="chapter">Chapter Test</option>
+                        <option value="unit">Unit Test</option>
+                        <option value="mock">Mock Test</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="tests-grid">
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Algebra Chapter Test</h3>
+                        <p>Mathematics • Class 10</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>30 Questions</span>
+                            <span>60 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Test your knowledge of algebraic expressions, equations, and inequalities.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Mechanics Unit Test</h3>
+                        <p>Physics • Class 11</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>25 Questions</span>
+                            <span>45 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Comprehensive test on motion, forces, energy, and momentum concepts.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Organic Chemistry Test</h3>
+                        <p>Chemistry • Class 12</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>35 Questions</span>
+                            <span>75 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Test on nomenclature, reactions, and mechanisms in organic chemistry.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>CBSE Math Mock Test</h3>
+                        <p>Mathematics • Class 10</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>40 Questions</span>
+                            <span>90 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Full-length mock test based on CBSE pattern and marking scheme.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Electromagnetism Test</h3>
+                        <p>Physics • Class 12</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>30 Questions</span>
+                            <span>60 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Test on electromagnetic induction, AC circuits, and electromagnetic waves.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Chemical Kinetics Test</h3>
+                        <p>Chemistry • Class 12</p>
+                    </div>
+                    <div class="test-card-body">
+                        <div class="test-info">
+                            <span>25 Questions</span>
+                            <span>45 mins</span>
+                        </div>
+                        <p class="test-description">
+                            Test on rate of reaction, order of reaction, and activation energy.
+                        </p>
+                        <button class="action-btn view-btn">
+                            <i class="fas fa-play-circle"></i> Start Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doubts Page -->
+    <div id="doubts" class="page">
+        <div class="container">
+            <h2 class="section-title">Ask Your Doubts</h2>
+            
+            <div class="doubts-container">
+                <div class="ask-doubt">
+                    <h3>Ask a New Question</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="doubt-subject">Subject</label>
+                            <select id="doubt-subject">
+                                <option value="">Select Subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doubt-class">Class</label>
+                            <select id="doubt-class">
+                                <option value="">Select Class</option>
+                                <option value="9">Class 9</option>
+                                <option value="10">Class 10</option>
+                                <option value="11">Class 11</option>
+                                <option value="12">Class 12</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doubt-title">Question Title</label>
+                            <input type="text" id="doubt-title" placeholder="Enter your question in brief">
+                        </div>
+                        <div class="form-group">
+                            <label for="doubt-desc">Detailed Description</label>
+                            <textarea id="doubt-desc" placeholder="Describe your doubt in detail"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Question</button>
+                    </form>
+                </div>
+                
+                <div class="doubt-list">
+                    <h3>Recent Questions</h3>
+                    
+                    <div class="doubt-item">
+                        <h4>How to solve quadratic equations using discriminant?</h4>
+                        <p>I'm confused about when to use the discriminant method for solving quadratic equations.</p>
+                        <div class="doubt-meta">
+                            <span>Mathematics • Class 10</span>
+                            <span>2 answers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="doubt-item">
+                        <h4>Difference between electromotive force and potential difference?</h4>
+                        <p>Can someone explain the practical difference between EMF and potential difference?</p>
+                        <div class="doubt-meta">
+                            <span>Physics • Class 12</span>
+                            <span>5 answers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="doubt-item">
+                        <h4>Mechanism of nucleophilic substitution reaction</h4>
+                        <p>I don't understand the difference between SN1 and SN2 reaction mechanisms.</p>
+                        <div class="doubt-meta">
+                            <span>Chemistry • Class 12</span>
+                            <span>3 answers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="doubt-item">
+                        <h4>Application of Pythagoras theorem in real life</h4>
+                        <p>Can someone give examples of how Pythagoras theorem is used in daily life?</p>
+                        <div class="doubt-meta">
+                            <span>Mathematics • Class 9</span>
+                            <span>4 answers</span>
+                        </div>
+                    </div>
+                    
+                    <div class="doubt-item">
+                        <h4>Understanding Newton's third law of motion</h4>
+                        <p>Why don't action and reaction forces cancel each other if they are equal and opposite?</p>
+                        <div class="doubt-meta">
+                            <span>Physics • Class 11</span>
+                            <span>6 answers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -944,11 +1286,11 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#classes">Classes</a></li>
-                        <li><a href="#subjects">Subjects</a></li>
-                        <li><a href="#">Test Series</a></li>
-                        <li><a href="#">Doubts</a></li>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="classes">Classes</a></li>
+                        <li><a href="#" class="nav-link" data-page="study-material">Study Material</a></li>
+                        <li><a href="#" class="nav-link" data-page="practice-tests">Practice Tests</a></li>
+                        <li><a href="#" class="nav-link" data-page="doubts">Doubts</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -977,24 +1319,37 @@
     </footer>
 
     <script>
-        // Tab functionality for subjects
-        document.querySelectorAll('.subject-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and content
-                document.querySelectorAll('.subject-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.subject-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                const target = tab.getAttribute('data-target');
-                document.getElementById(target).classList.add('active');
-            });
-        });
-
-        // Simple filtering functionality for classes
+        // Multi-page navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Get all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Add click event listeners to all navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target page from data attribute
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Show the target page
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Update active class in navigation
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Simple filtering functionality for classes
             const subjectFilter = document.getElementById('subject');
             const classFilter = document.getElementById('class');
             const boardFilter = document.getElementById('board');
@@ -1022,27 +1377,11 @@
                 });
             }
             
-            subjectFilter.addEventListener('change', filterClasses);
-            classFilter.addEventListener('change', filterClasses);
-            boardFilter.addEventListener('change', filterClasses);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId.startsWith('#')) {
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
+            if (subjectFilter && classFilter && boardFilter) {
+                subjectFilter.addEventListener('change', filterClasses);
+                classFilter.addEventListener('change', filterClasses);
+                boardFilter.addEventListener('change', filterClasses);
+            }
         });
     </script>
 </body>
